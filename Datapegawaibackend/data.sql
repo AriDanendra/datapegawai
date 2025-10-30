@@ -182,17 +182,6 @@ CREATE TABLE `riwayat_skp` (
     FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE `riwayat_skp_permenpan` (
-    `id` INT NOT NULL AUTO_INCREMENT,
-    `user_id` INT NOT NULL,
-    `tahun` VARCHAR(255),
-    `predikatKinerja` VARCHAR(255),
-    `hasilEvaluasi` VARCHAR(255),
-    `berkasUrl` VARCHAR(255),
-    PRIMARY KEY (`id`),
-    FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 CREATE TABLE `riwayat_hukuman` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `user_id` INT NOT NULL,

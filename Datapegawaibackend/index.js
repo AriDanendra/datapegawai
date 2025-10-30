@@ -7,15 +7,14 @@ import { fileURLToPath } from 'url';
 import fs from 'fs';
 
 const app = express();
-const PORT = 3001; // Port backend
+const PORT = 3001;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Tentukan direktori upload lokal
-const uploadDir = path.join(__dirname, 'public/uploads');
+// Use /tmp on Vercel, otherwise use local public/uploads
+const uploadDir = process.env.VERCEL ? '/tmp/uploads' : path.join(__dirname, 'public/uploads');
 
-// Buat direktori jika belum ada
 if (!fs.existsSync(uploadDir)){
     fs.mkdirSync(uploadDir, { recursive: true });
 }
@@ -23,13 +22,16 @@ if (!fs.existsSync(uploadDir)){
 app.use(cors());
 app.use(express.json());
 
-// Sajikan folder 'public' secara statis (termasuk 'public/uploads')
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
-// Rute API
+// Conditionally serve from /tmp on Vercel
+if (process.env.VERCEL) {
+  app.use('/public/uploads', express.static(uploadDir));
+}
+
 app.use('/api/auth', authRoutes);
 app.use('/api/employees', employeeRoutes);
 
 app.listen(PORT, () => {
-  console.log(`Server backend berjalan di http://localhost:${PORT}`);
+  console.log(`Server berjalan di http://localhost:${PORT}`);
 });
