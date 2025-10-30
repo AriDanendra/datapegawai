@@ -40,8 +40,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `nip`, `jabatan`, `golongan`, `profilePictureUrl`, `password`, `role`, `ttl`, `agama`, `suku`, `alamat`, `pendidikan`, `instansi`, `nomorHp`, `email`, `noKtp`, `noNpwp`, `noKarpeg`, `noKaris`, `noAskes`, `noTaspen`, `noRekening`) VALUES
-(1, 'Administrator', 'admin', NULL, NULL, '/assets/profile-pic.jpg', '$2b$10$f6.L.Lw.3.3j.j/A.j.j.j.j.j.j.j.j.j.j.j.j.j.j.j.j.j.j.j.j', 'admin', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, 'hj tunru, S.T.', '198804011990032010', 'Kepala Bagian Ketatausahaan, Humas dan Hukum', 'PEMBINA (IVa)', '/assets/profile-pic.jpg', '$2b$10$f6.L.Lw.3.3j.j/A.j.j.j.j.j.j.j.j.j.j.j.j.j.j.j.j.j.j.j.j', 'pegawai', 'Parepare, 01-04-1988', 'ISLAM', '-', 'Jl. Mattiro Jompi No. 5, Parepare', 'S.2 - MANAJEMEN PEMBANGUNAN DAERAH', 'UPT RUMAH SAKIT DR. HASRI AINUN HABIBIE', '08114225580', 'edwinzhoker@gmail.com', '7372010104880001', '12.345.678.9-012.000', 'J 123456', 'K 789012', '0001234567890', '9876543210', '123-456-7890 (Bank Sulselbar)');
+(1, 'Administrator', 'admin', NULL, NULL, '/assets/profile-pic.jpg', '$2a$10$9Ie7nwetymQ0PfLbMa5co.qnq5naDadZKCagP6dKpR/gAQ4.o/VvK', 'admin', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2, 'hj tunru, S.T.', '198804011990032010', 'Kepala Bagian Ketatausahaan, Humas dan Hukum', 'PEMBINA (IVa)', '/assets/profile-pic.jpg', '$2a$10$9Ie7nwetymQ0PfLbMa5co.qnq5naDadZKCagP6dKpR/gAQ4.o/VvK', 'pegawai', 'Parepare, 01-04-1988', 'ISLAM', '-', 'Jl. Mattiro Jompi No. 5, Parepare', 'S.2 - MANAJEMEN PEMBANGUNAN DAERAH', 'UPT RUMAH SAKIT DR. HASRI AINUN HABIBIE', '08114225580', 'edwinzhoker@gmail.com', '7372010104880001', '12.345.678.9-012.000', 'J 123456', 'K 789012', '0001234567890', '9876543210', '123-456-7890 (Bank Sulselbar)');
 
 -- --------------------------------------------------------
 
