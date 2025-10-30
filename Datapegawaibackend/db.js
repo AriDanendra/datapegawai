@@ -1,6 +1,9 @@
 // Datapegawaibackend/db.js
 
 import mysql from 'mysql2/promise';
+import dotenv from 'dotenv'; // Tambahkan impor dotenv
+
+dotenv.config();
 
 // Buat koneksi pool ke database lokal
 const pool = mysql.createPool({
