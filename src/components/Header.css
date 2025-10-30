@@ -1,0 +1,81 @@
+/* --- Styling Khusus untuk Komponen Header --- */
+
+/*
+  Mengatur Header agar item di dalamnya (logo dan judul)
+  mulai dari kiri, sementara tombol-tombol tetap di posisi absolutnya.
+*/
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Diubah dari center ke flex-start */
+  position: relative; /* Diperlukan agar tombol absolut tetap di dalam header */
+  height: 60px; /* <-- Memberi tinggi tetap pada header */
+  padding: 0 2rem; /* Menjaga padding kiri dan kanan */
+  box-sizing: border-box; /* Memastikan padding tidak menambah tinggi */
+}
+
+/* Kontainer untuk logo dan judul */
+.header-title-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Jarak antara logo dan judul */
+  /* Memberi margin kiri agar tidak tertimpa tombol sidebar */
+  margin-left: 50px;
+}
+
+.header-logo {
+  height: 70px; /* <-- Logo dibuat lebih besar dari tinggi header */
+  width: auto;
+  flex-shrink: 0; /* Mencegah logo menyusut jika judul terlalu panjang */
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+  white-space: nowrap; /* Mencegah teks turun baris */
+}
+
+
+/* --- Penyesuaian Responsif untuk Header --- */
+
+@media (max-width: 992px) {
+  .header h1 {
+    font-size: 1rem;
+  }
+  
+  /* Sembunyikan logo di layar tablet agar tidak terlalu ramai */
+  .header-logo {
+    display: none;
+  }
+
+  /* Saat logo hilang, hilangkan juga marginnya */
+  .header-title-container {
+      margin-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .header h1 {
+    display: none;
+  }
+
+  /* Saat judul hilang, header perlu ditengahkan lagi
+    agar logo tunggal berada di tengah.
+  */
+  .header {
+      justify-content: center;
+  }
+  
+  /* Saat judul hilang, tampilkan lagi logo sebagai identitas utama */
+  .header-logo {
+    display: block;
+    height: 45px; /* Disesuaikan agar pas di dalam header */
+  }
+
+  /* Reset margin karena sekarang item ditengahkan */
+  .header-title-container {
+      margin-left: 0;
+  }
+}
+

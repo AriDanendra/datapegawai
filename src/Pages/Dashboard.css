@@ -1,0 +1,146 @@
+/* src/Pages/Dashboard.css */
+
+/* --- Styling Baru untuk Dashboard Pegawai --- */
+
+.dashboard-pegawai-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboard-header {
+  margin-bottom: 2rem;
+}
+
+.dashboard-header h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.dashboard-header p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+}
+
+/* Menggunakan kembali style dari admin dashboard untuk konsistensi */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  border-radius: 12px;
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.stat-card .stat-icon {
+  font-size: 2.5rem;
+  margin-right: 1.5rem;
+  opacity: 0.8;
+}
+
+.stat-card .stat-info p {
+  margin: 0 0 0.25rem 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.stat-card .stat-info h3 {
+  margin: 0;
+  font-size: 1.1rem; /* MODIFIED: Ukuran font dikecilkan */
+  font-weight: 600; /* MODIFIED: Ketebalan font dikurangi */
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+.stat-card.orange { background: linear-gradient(45deg, #fd7e14, #ffc107); }
+.stat-card.green { background: linear-gradient(45deg, #28a745, #20c997); }
+
+/* Kartu Profil Baru */
+.dashboard-profile-card {
+  background-color: var(--main-bg);
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background-color: #f8f9fa; /* Latar belakang header sedikit berbeda */
+  border-bottom: 1px solid var(--border-color);
+}
+
+.profile-picture-dashboard {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-info h4 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.3rem;
+  color: var(--text-primary);
+}
+
+.profile-info p {
+  margin: 0;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.profile-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 1.5rem;
+  padding: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.profile-details-grid div {
+  line-height: 1.6;
+}
+
+.profile-details-grid span {
+  font-weight: 600;
+  color: var(--text-secondary);
+  display: block;
+  font-size: 0.8rem;
+}
+
+.profile-details-grid .alamat {
+  grid-column: 1 / -1; /* Alamat memakan dua kolom */
+}
+
+@media (max-width: 768px) {
+  .profile-details-grid {
+    grid-template-columns: 1fr;
+  }
+}

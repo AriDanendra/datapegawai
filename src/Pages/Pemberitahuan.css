@@ -1,0 +1,132 @@
+.pemberitahuan-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.pemberitahuan-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.pemberitahuan-header h2 {
+  margin: 0;
+}
+
+.pemberitahuan-header .subtitle {
+  margin-top: 0.25rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.tandai-semua-btn {
+  padding: 0.6rem 1rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 0.85rem;
+  background-color: transparent;
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tandai-semua-btn:hover {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.notification-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.notification-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 1.25rem;
+  background-color: var(--main-bg);
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-left: 5px solid transparent;
+}
+
+.notification-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.notification-item.unread {
+  background-color: #fffaf0; /* Warna lembut untuk notif belum dibaca */
+  border-left-color: var(--accent-color);
+}
+
+.notification-item.read {
+  opacity: 0.7;
+}
+
+.notification-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+}
+
+.notification-icon.success { background-color: #28a745; }
+.notification-icon.warning { background-color: #ffc107; color: #333; }
+.notification-icon.info { background-color: #17a2b8; }
+.notification-icon.error { background-color: #dc3545; }
+
+.notification-content {
+  flex-grow: 1;
+}
+
+.notification-title {
+  margin: 0 0 0.25rem 0;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.notification-message {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.notification-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.notification-timestamp {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.unread-dot {
+  width: 10px;
+  height: 10px;
+  background-color: var(--accent-color);
+  border-radius: 50%;
+}

@@ -1,0 +1,73 @@
+/* Styling untuk Dashboard Admin yang Lebih Menarik */
+
+/* HAPUS BAGIAN INI KARENA TIDAK DIGUNAKAN LAGI */
+/* .dashboard-header { ... }
+.dashboard-header h2 { ... }
+.dashboard-header p { ... }
+*/
+
+/* Grid untuk kartu statistik */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  border-radius: 12px;
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.stat-card .stat-icon {
+  font-size: 2.5rem;
+  margin-right: 1.5rem;
+  opacity: 0.8;
+}
+
+.stat-card .stat-info p {
+  margin: 0 0 0.25rem 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.stat-card .stat-info h3 {
+  margin: 0;
+  font-size: 1.5rem; /* MODIFIED: Ukuran font disesuaikan agar tidak terlalu besar */
+  font-weight: 600; /* MODIFIED: Ketebalan font dikurangi */
+}
+
+/* Variasi Warna Kartu */
+.stat-card.blue { background: linear-gradient(45deg, #007bff, #17a2b8); }
+.stat-card.green { background: linear-gradient(45deg, #28a745, #20c997); }
+.stat-card.orange { background: linear-gradient(45deg, #fd7e14, #ffc107); }
+.stat-card.purple { background: linear-gradient(45deg, #6f42c1, #9d67e3); }
+.stat-card.red { background: linear-gradient(45deg, #dc3545, #f46a78); }
+.stat-card.teal { background: linear-gradient(45deg, #20c997, #52d9b5); }
+.stat-card.indigo { background: linear-gradient(45deg, #6610f2, #854cff); }
+
+/* Kartu untuk informasi tambahan */
+.additional-info-card {
+  background-color: var(--main-bg);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.additional-info-card h4 {
+  margin: 0 0 1rem 0;
+  font-size: 1.2rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.75rem;
+}

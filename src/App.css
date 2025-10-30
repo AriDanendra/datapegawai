@@ -1,0 +1,824 @@
+/* --- 1. Global & Root Variables --- */
+:root {
+  --header-bg: linear-gradient(90deg, #ff8c00 0%, #ffb347 100%);
+  --sidebar-bg: #ffffff;
+  --main-bg: #ffffff;
+  --content-bg: #f8f9fa;
+  --text-primary: #212529;
+  --text-secondary: #6c757d;
+  --accent-color: #ff8c00;
+  --border-color: #dee2e6;
+}
+
+body {
+  margin: 0;
+  background-color: var(--content-bg);
+  color: var(--text-primary);
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- 2. Main Layout Structure --- */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.main-body-container {
+  display: flex;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.main-content {
+  padding: 1rem 2rem;
+  background-color: var(--content-bg);
+  flex-grow: 1;
+}
+
+/* --- 3. Header --- */
+.header {
+  position: relative;
+  padding: 1rem 2rem;
+  background: var(--header-bg);
+  color: white;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.header h1 {
+  margin: 0 80px;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* Kontainer header yang menampung tombol kembali */
+.page-header-with-back {
+  display: flex;          /* Mengaktifkan flexbox untuk penataan */
+  align-items: center;    /* Menyelaraskan item secara vertikal di tengah */
+  margin-bottom: 1.5rem;  /* Memberi jarak bawah dari konten utama */
+  padding-bottom: 1rem;   /* Memberi jarak dalam di bagian bawah */
+  border-bottom: 1px solid var(--border-color); /* Garis bawah sebagai pemisah */
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem; /* Sedikit lebih lebar jaraknya */
+  padding: 0.6rem 1.2rem; /* Dibuat sedikit lebih besar */
+  
+  /* --- Perubahan Utama --- */
+  background-color: var(--accent-color); /* Latar belakang solid oranye */
+  color: white;                          /* Warna teks putih agar kontras */
+  border: none;                          /* Hapus border karena sudah solid */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Tambah bayangan agar menonjol */
+  /* ---------------------- */
+  
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600; /* Dibuat sedikit lebih tebal */
+  
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Efek saat cursor diarahkan ke tombol */
+.back-button:hover {
+  background-color: #e67e22; /* Warna oranye yang sedikit lebih gelap */
+  transform: translateY(-2px); /* Efek sedikit terangkat */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Bayangan lebih jelas saat hover */
+}
+
+/* Menyesuaikan span di dalam tombol */
+.back-button span {
+  line-height: 1; /* Memastikan teks tidak memiliki spasi baris tambahan */
+}
+
+/* --- 4. Sidebar --- */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: 260px;
+  padding-top: 0; /* Menghilangkan padding atas */
+  background-color: var(--sidebar-bg);
+  color: var(--text-primary);
+  border-right: 1px solid var(--border-color);
+  transition: margin-left 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.sidebar.closed {
+  margin-left: -260px;
+}
+
+/* Penataan baru untuk user profile */
+.user-profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1.5rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-profile .user-name {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1.1rem;
+  line-height: 1.2;
+}
+
+.user-title {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.sidebar-close-btn {
+  background: none;
+  border: none;
+  font-size: 2.2rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0;
+  line-height: 0.8; /* Menyesuaikan alignment vertikal */
+  transition: color 0.2s, transform 0.2s;
+}
+
+.sidebar-close-btn:hover {
+  color: var(--text-primary);
+  transform: rotate(90deg);
+}
+
+/* Kategori menu dengan jarak yang diperbaiki */
+.nav-category {
+  padding: 1rem 1.5rem 0.5rem 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Menghilangkan flex-grow untuk menghapus spasi ekstra */
+.nav-menu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-menu li a {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.8rem 1.5rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.2s, color 0.2s, border-left 0.2s;
+  border-left: 3px solid transparent;
+}
+
+.nav-menu li a:hover {
+  background-color: #f8f9fa;
+  color: var(--text-primary);
+  border-left-color: var(--accent-color);
+}
+
+.nav-menu li a.active {
+  background-color: var(--accent-color);
+  color: white;
+  border-left-color: #e67e22;
+}
+
+.nav-menu li a svg {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  transition: transform 0.2s;
+}
+
+.nav-menu li a.active svg,
+.nav-menu li a:hover svg {
+  transform: scale(1.1);
+}
+/* --- 5. Buttons --- */
+.sidebar-toggle-btn {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  font-size: 24px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.logout-btn {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  padding: 0.5rem 1rem;
+  color: white;
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 5px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  transition: background-color 0.2s, color 0.2s;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background-color: white;
+  color: var(--accent-color);
+}
+
+/* --- 6. Dashboard Page Specifics --- */
+.welcome-header {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.main-content h2 {
+  margin-top: 0;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.app-subtitle {
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* --- 7. Profile Page Specifics --- */
+.profile-page-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+/* Profile Card (General & Dashboard) */
+.profile-card {
+  display: flex;
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background: var(--main-bg);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  align-items: center;
+  position: relative;
+}
+
+.edit-profile-action-btn {
+  position: absolute;
+  top: 15px;      /* Jarak dari atas */
+  right: 15px;    /* Jarak dari kanan */
+  background-color: var(--accent-color); /* Warna oranye */
+  color: white;
+  border: none;
+  border-radius: 50%; /* Bentuk lingkaran */
+  width: 38px;      /* Ukuran lebar */
+  height: 38px;     /* Ukuran tinggi */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+  z-index: 10; /* Pastikan tombol di atas elemen lain */
+}
+
+.edit-profile-action-btn:hover {
+  background-color: #e67e22; /* Warna oranye sedikit lebih gelap saat hover */
+  transform: translateY(-2px); /* Efek sedikit terangkat */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Tambahkan di App.css atau file CSS global Anda */
+
+.edit-profile-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 kolom dengan lebar sama */
+  gap: 0 1rem; /* Jarak antar kolom */
+}
+
+.profile-card .profile-picture {
+  width: 250px;
+  height: 350px;
+  border: 4px solid var(--border-color);
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* Profile Card (Left side on Profile Page) */
+.profile-page-container .profile-card {
+  flex: 0 0 400px;
+  flex-direction: column;
+  margin: 0;
+  text-align: center;
+  align-items: center;
+}
+
+.profile-page-container .profile-card .profile-picture {
+  width: 90px;
+  height: 120px;
+}
+
+.profile-page-container .profile-card .employee-name {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.profile-page-container .profile-card .profile-data table {
+  text-align: left;
+}
+
+.profile-page-container .profile-card .profile-data table td {
+  padding: 0.25rem 0;
+  font-size: 0.85rem;
+}
+
+.profile-page-container .profile-card .profile-data table td:first-child {
+  width: 130px;
+}
+
+.profile-page-container .profile-card .additional-info td {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  font-size: 0.75rem;
+}
+
+/* Profile Data Table Styling */
+.profile-data {
+  flex-grow: 1;
+}
+
+.profile-data .employee-name {
+  margin: 0 0 0.5rem 0;
+  color: var(--accent-color);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.profile-data table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.profile-data table td {
+  padding: 0.35rem 0;
+  font-size: 0.95rem;
+}
+
+.profile-data table td:first-child {
+  width: 150px;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.profile-card hr {
+  margin: 0.5rem 0;
+  border: none;
+  border-top: 1px solid var(--border-color);
+}
+
+/* Profile Menu & Content Area (Right Side) */
+.profile-details-right {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.profile-menu-card,
+.profile-content-card {
+  background-color: var(--main-bg);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+}
+
+.profile-menu-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem; /* Jarak antara ikon dan teks dikurangi */
+  padding: 0.5rem; /* Padding dikurangi untuk kotak yang lebih kecil */
+  background-color: var(--main-bg);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.7rem; /* Ukuran font diperkecil */
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+  transition: all 0.2s ease-in-out;
+  text-align: center;
+  min-height: 50px; /* Tinggi minimum dikurangi secara signifikan */
+  line-height: 1.2;
+}
+
+.menu-item:hover {
+  transform: translateY(-3px);
+  color: var(--text-primary);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.menu-item.active {
+  background-color: var(--accent-color);
+  color: white;
+  border-color: var(--accent-color);
+}
+
+.menu-item svg {
+  flex-shrink: 0;
+}
+
+/* --- 8. Riwayat Pages (Table Styling) --- */
+.riwayat-container {
+  font-size: 0.85rem;
+}
+
+.riwayat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.riwayat-header .subtitle {
+  margin-top: -10px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+/* NEW: Specific styles for headers of tables inside the profile content area */
+.profile-content-card .riwayat-header {
+  background: none; /* Remove dashboard-like background */
+  box-shadow: none; /* Remove shadow */
+  padding: 0; /* Remove extra padding */
+  margin-bottom: 1.5rem; /* Keep the margin */
+  padding-bottom: 1rem; /* Add padding just for the bottom space */
+  border-bottom: 1px solid var(--border-color); /* Add a separator line */
+  border-radius: 0; /* Remove rounded corners */
+  align-items: center; /* Align title and button vertically */
+}
+
+.profile-content-card .riwayat-header h3 {
+  font-size: 1.3rem; /* A more appropriate title size */
+  font-weight: 600;
+  padding-bottom: 0; /* Remove bottom padding */
+  color: var(--text-primary);
+  position: static; /* Reset positioning from the other style */
+}
+
+.profile-content-card .riwayat-header h3::after {
+  display: none; /* IMPORTANT: Remove the orange underline effect */
+}
+
+.profile-content-card .riwayat-header .subtitle {
+  margin-top: 0.1rem; /* Adjust subtitle position */
+  font-size: 0.9rem;
+}
+
+
+.table-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+}
+
+.show-entries label,
+.show-entries span,
+.search-box label {
+  margin-right: 0.5rem;
+}
+
+.show-entries select,
+.search-box input {
+  padding: 0.4rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  margin-right: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.table-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.add-button-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.table-responsive-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.riwayat-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.riwayat-table th {
+  font-weight: 600;
+  text-align: left;
+}
+
+.riwayat-table th,
+.riwayat-table td {
+  padding: 0.5rem;
+  font-size: 0.8rem; /* <-- FONT ISI KOLOM DIPERKECIL */
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+}
+
+.riwayat-table td:nth-child(6) { /* Kolom Lulus */
+  white-space: nowrap;
+}
+
+.download-button {
+  padding: 0.2rem 0.6rem;
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column; /* <-- TOMBOL DITUMPUK KE BAWAH */
+  gap: 0.4rem;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 0.35rem;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.action-btn.refresh { background-color: #28a745; }
+.action-btn.edit { background-color: #007bff; }
+.action-btn.delete { background-color: #dc3545; }
+.action-btn.view {background-color:#28a745;}
+
+.table-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.pagination button {
+  padding: 0.5rem 0.75rem;
+  background-color: white;
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  color: var(--accent-color);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.pagination button:hover {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.pagination button:first-child {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.pagination button:last-child {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.pagination button.active {
+  background-color: var(--accent-color);
+  color: white;
+  border-color: var(--accent-color);
+}
+
+/* --- 9. Footer --- */
+.footer {
+  padding: 1rem 2rem;
+  background-color: var(--content-bg);
+  color: var(--text-secondary);
+  text-align: right;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+/* --- 10. Media Queries (Responsive Design) --- */
+
+/* Medium Devices (Tablets, etc.) */
+@media (max-width: 1200px) {
+  .profile-menu-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Small Devices (Landscape Phones, etc.) */
+@media (max-width: 992px) {
+  .profile-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .profile-card .profile-picture {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+  }
+
+  .profile-data table td {
+    text-align: left;
+  }
+
+  .header h1 {
+    margin: 0 50px;
+    font-size: 1rem;
+  }
+  
+  .profile-page-container {
+    flex-direction: column;
+  }
+
+  .profile-page-container .profile-card {
+    flex-basis: auto;
+    width: 100%;
+  }
+
+  .profile-menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Extra Small Devices (Portrait Phones, etc.) */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 1rem;
+  }
+  
+  .profile-card {
+    padding: 1.5rem;
+  }
+
+  .profile-data .employee-name {
+    font-size: 1.5rem;
+  }
+
+  .profile-data table td:first-child {
+    width: 120px;
+  }
+
+  .header {
+    padding: 1rem;
+  }
+
+  .header h1 {
+    display: none;
+  }
+
+  .sidebar-toggle-btn {
+    left: 15px;
+  }
+
+  .logout-btn {
+    right: 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  .profile-menu-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tiniest Devices */
+@media (max-width: 480px) {
+  .profile-data table td {
+    font-size: 0.85rem;
+  }
+  
+  .profile-data table td:first-child {
+    width: 100px;
+    padding-right: 10px;
+  }
+}
+
+.data-keluarga-container .riwayat-container {
+  margin-bottom: 2rem; /* Memberi jarak bawah antar tabel */
+}
+
+.riwayat-diklat-container .riwayat-container {
+  margin-bottom: 2rem; /* Memberi jarak bawah antar tabel */
+}
+
+/* Penyesuaian Warna Tombol */
+.card-action-buttons .action-btn.view { 
+    background-color: #007bff; /* Biru untuk Detail (Lihat) */
+}
+.card-action-buttons .action-btn.view:hover { background-color: #0056b3; }
+
+.card-action-buttons .action-btn.edit {
+    background-color: #ffc107; /* Kuning untuk Edit */
+    color: var(--text-primary);
+}
+.card-action-buttons .action-btn.edit:hover { background-color: #e0a800; }
+
+.card-action-buttons .action-btn.delete {
+    background-color: #dc3545; /* Merah untuk Hapus */
+}
+.card-action-buttons .action-btn.delete:hover { background-color: #c82333; }
+
+/* CSS BARU UNTUK TOMBOL UPLOAD FOTO */
+.card-action-buttons .action-btn.upload {
+    background-color: #17a2b8; /* Warna sian untuk Foto */
+}
+.card-action-buttons .action-btn.upload:hover { background-color: #117a8b; }
+
+
+/* Tombol Tambah Pegawai (Override Riwayat Action) */
+.btn-tambah-pegawai {
+    background-color: var(--accent-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    transition: background-color 0.2s;
+}
+.btn-tambah-pegawai:hover {
+    background-color: #e67e22; /* Warna oranye yang sedikit lebih gelap */
+}
+
+/* Media Query untuk Mobile */
+@media (max-width: 768px) {
+    .pegawai-card-grid {
+        grid-template-columns: 1fr; /* Satu card per baris di mobile */
+    }
+    
+    .btn-tambah-pegawai {
+        font-size: 0.9rem;
+    }
+}

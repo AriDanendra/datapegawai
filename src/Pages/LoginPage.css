@@ -1,0 +1,132 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  
+  /* Tambahan untuk background */
+  position: relative; /* Diperlukan agar pseudo-element bisa diposisikan */
+  overflow: hidden; /* Mencegah blur "bocor" di tepian */
+}
+
+/* Pseudo-element untuk background yang di-blur */
+.login-container::before {
+  content: '';
+  position: absolute;
+  top: -10px; /* Sedikit dilebihkan untuk menutupi tepian blur */
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  
+  /* Ganti 'background.jpg' jika nama file Anda berbeda */
+  background-image: url('/assets/background.jpg'); 
+  background-size: cover;
+  background-position: center;
+  
+  /* Ini adalah efek blurnya */
+  filter: blur(8px); 
+  
+  /* Diletakkan di belakang konten lain */
+  z-index: -1; 
+}
+
+.login-card {
+  padding: 2.5rem 3rem;
+  /* Diberi sedikit transparansi agar background terlihat */
+  background-color: rgba(255, 255, 255, 0.9); 
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  z-index: 1; /* Memastikan kartu login berada di depan background */
+}
+
+.login-logo {
+  width: 80px;
+  margin-bottom: 1rem;
+}
+
+.login-card h2 {
+  margin: 0 0 0.5rem 0;
+  color: #212529;
+}
+
+.login-card p {
+  margin-bottom: 2rem;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.input-group {
+  text-align: left;
+  margin-bottom: 1.25rem;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #495057;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.login-button {
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #ff8c00 0%, #ffb347 100%);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.login-button:hover {
+  opacity: 0.9;
+}
+
+/* Tambahkan CSS ini di bagian akhir file LoginPage.css */
+
+.error-message-inline {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.25rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.login-button {
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #ff8c00 0%, #ffb347 100%);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  
+  /* Menambahkan margin-top agar tidak terlalu dekat dengan pesan error */
+  margin-top: 1rem; 
+}
+
+.login-button:hover {
+  opacity: 0.9;
+}

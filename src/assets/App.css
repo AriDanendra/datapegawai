@@ -1,0 +1,219 @@
+/* General Styling & Variables */
+:root {
+ --header-bg: linear-gradient(90deg, #ff8c00 0%, #ffb347 100%);
+ --sidebar-bg: #ffffff; /* DIUBAH: Sidebar menjadi putih */
+ --main-bg: #ffffff;
+ --text-primary: #4a4a4a; /* DIPERBAIKI: Typo dan dibuat lebih gelap untuk kontras */
+ --text-secondary: #6c757d;
+ --accent-color: #ff8c00;
+ --border-color: #e0e0e0; /* Dibuat sedikit lebih lembut */
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--main-bg);
+  color: var(--text-primary);
+}
+/* Style untuk pembungkus utama aplikasi */
+/* 1. Pembungkus utama aplikasi HARUS punya tinggi pasti */
+.app-container {
+  display: flex;
+  flex-direction: column; 
+  height: 100vh; /* PENTING: Mengunci tinggi aplikasi ke tinggi layar */
+}
+
+/* 2. Container di bawah header HARUS mengisi sisa ruang */
+.main-body-container {
+  display: flex; 
+  flex-grow: 1; /* PENTING: Mengisi sisa tinggi yang ditinggalkan header */
+  overflow: hidden; 
+}
+
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+
+/* Header Component */
+.header {
+  background: var(--header-bg);
+  padding: 1rem 2rem;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.2rem;  
+  font-weight: 500; 
+}
+
+
+/* Sidebar Component */
+.sidebar {
+  width: 260px;
+  background-color: var(--sidebar-bg);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 0;
+  flex-shrink: 0;
+  color:#4a4a4a;
+  flex-shrink: 0;
+}
+
+.user-profile {
+  text-align: center;
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.user-profile .avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 0.75rem;
+}
+
+.user-profile .user-name {
+  font-weight: 600;
+  margin: 0;
+  cursor: pointer;
+}
+
+.user-profile .user-name span {
+  font-size: 0.8rem;
+  margin-left: 5px;
+}
+
+.nav-menu {
+  list-style-type: none;
+  padding: 1rem 0;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.nav-menu li a {
+  display: block;
+  padding: 0.9rem 1.5rem;
+  text-decoration: none;
+  color: var(--text-primary);
+  font-weight: 500;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-menu li a:hover, .nav-menu li a.active {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.sidebar-footer {
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.sidebar-footer .logo {
+  width: 120px;
+  opacity: 0.8;
+}
+.welcome-header {
+  text-align: center; /* Membuat semua teks di dalamnya menjadi tengah */
+  margin-bottom: 2rem; /* Memberi jarak ke kartu profil di bawahnya */
+}
+
+/* Main Content Component */
+.main-content {
+  padding: 2rem;
+  flex-grow: 1;
+  background-color: #f4f7f6; /* Latar belakang konten yang sedikit berbeda */
+}
+
+.main-content h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #6c757d;
+  margin-top: 0;
+}
+
+.main-content .description {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.profile-card {
+  background: var(--main-bg);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.profile-card .profile-picture {
+  width: 300px;  /* Diperbesar dari 150px */
+  height: 500px; /* Diperbesar dari 200px */
+  border-radius: 8px;
+  object-fit: cover;
+  border: 4px solid var(--border-color);
+}
+
+.profile-data {
+  flex-grow: 1;
+}
+
+.profile-data .employee-name {
+  color: var(--accent-color);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+}
+
+.profile-data table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.profile-data table td {
+  padding: 0.6rem 0;
+  font-size: 0.95rem;
+}
+
+.profile-data table td:first-child {
+  width: 150px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.footer {
+  text-align: right;
+  padding: 1rem 2rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  background-color: #f4f7f6;
+}
+
+/* Style untuk sub-judul di bawah Selamat Datang */
+.app-subtitle {
+  font-size: 1.1rem; /* Ukuran font yang pas, tidak besar atau kecil */
+  font-weight: 500;
+  color: var(--text-secondary); /* Warna abu-abu agar sedikit berbeda */
+  margin-top: -1rem;      /* Mengurangi jarak dengan "Selamat Datang" */
+  margin-bottom: 1.5rem;  /* Menambah jarak ke deskripsi di bawahnya */
+  line-height: 1.5;       /* Spasi antar baris jika teksnya panjang */
+}
